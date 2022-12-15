@@ -1,8 +1,10 @@
 # Table of contents
 
-* [eharmony-docs](README.md)
-* [Page 1](page-1.md)
+* [Environment Setup](README.md)
+* [Monorepo / Monolith / Multirepo](monorepo-monolith-multirepo.md)
+* [NX introduction](nx-introduction.md)
+* [Webpack Module Federation](webpack-module-federation.md)
 
-## Group 1
+## NX workspace
 
-* [Page 2](group-1/page-2.md)
+* [Page 2](nx-workspace/page-2.md)
