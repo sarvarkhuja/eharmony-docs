@@ -16,6 +16,7 @@
 
 * [Tailwind](styling/tailwind.md)
 * [scss file structure](styling/scss-file-structure.md)
+* [Using BEM structure](styling/using-bem-structure.md)
 
 ## Localization
 
