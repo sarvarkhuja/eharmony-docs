@@ -12,6 +12,6 @@ read the installation and setup guide
 Must have extention
 {% endembed %}
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (2).png" alt=""><figcaption></figcaption></figure>
 
 Tailwind configuration lies in main app/shell folder, in order to use tailwind on your library you need to add newly added URL to content array

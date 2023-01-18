@@ -36,5 +36,9 @@ This is an example of CLI commands
 
 Many enterprise applications are portals: slim shells loading different modules at runtime. If this is what you are building, the following might be a better starting point:
 
+### Recipes to write better code
+
+{% embed url="https://nx.dev/recipes" %}
+
 
 

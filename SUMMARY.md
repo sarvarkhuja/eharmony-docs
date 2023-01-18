@@ -2,6 +2,8 @@
 
 * [Monorepo / Monolith / Multirepo](README.md)
 * [Environment Setup](<README (1).md>)
+* [Cloning the repository](cloning-the-repository.md)
+* [Git Flow](git-flow.md)
 
 ## NX workspace
 
@@ -26,8 +28,8 @@
 
 ## Angular best practices
 
-* [Page 1](angular-best-practices/page-1.md)
+* [Best practices](angular-best-practices/best-practices.md)
 
 ## Typescript best practices&#x20;
 
-* [Page 2](typescript-best-practices/page-2.md)
+* [Best practices](typescript-best-practices/best-practices.md)
