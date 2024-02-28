@@ -555,6 +555,30 @@ You can also write your own operators. If you do so, it is strongly recommended 
 
 Covering all the various operators is out of the scope of this handbook. Please refer to some of the learning resources mentioned earlier \[[1](https://infinum.com/handbook/books/frontend/angular/getting-started-with-angular/get-to-know-rxjs)] \[[2](https://infinum.com/handbook/books/frontend/angular/angular-guidelines-and-best-practices/core-libraries-configuration-and-tools#a-hrefhttpsgithubcomreactivexrxjs-target\_blankrxjsa)].
 
+### Don't forget to use Destroy service <a href="#tap-vs-subscribe" id="tap-vs-subscribe"></a>
+
+````
+```typescript
+    constructor(
+        @Self() @Inject(DestroyService) private readonly destroy$: DestroyService,
+    ) {}
+```
+````
+
+### Don't forget to add resolution modifers
+
+````
+```typescript
+    constructor(
+        @Optional() @Inject(TUI_ELEMENT_REF) el: ElementRef<HTMLElement> | null,
+        @Host() @Inject(TUI_IS_IOS) isIos: boolean,
+        @Inject(ElementRef) {nativeElement}: ElementRef<HTMLElement>,
+        @Inject(Renderer2) renderer: Renderer2,
+        @Self() @Inject(DestroyService) destroy$: DestroyService,
+    )
+```
+````
+
 ### tap() vs subscribe() <a href="#tap-vs-subscribe" id="tap-vs-subscribe"></a>
 
 When to use the `tap` operator in Rx flow? As per the [official documentation for the `tap` operator](https://rxjs.dev/api/operators/tap), it should be used when performing "side-effects". This means that the operator should be used when the user wants to "affect outside state with a notification without altering the notification". Although side-effects can be performed inside of the map operator, we should strive to write pure functions wherever possible and have a clear separation of responsibilities. This is one of the cases where the `tap` operator comes in handy. Since the `tap` operator's callback is the same as the subscriber's `next` callback, nothing stops us from writing the same logic in either of those places. Well, nothing besides semantics. When writing Rx flows, we should convey as much information as we can just through our code, which means - use `tap` for performing side-effects and debugging/logging mostly, whereas subscribe represents the end of the flow which means that we have probably received some data which can then be used in application. This makes subscribe callback the correct place to do something with the data you've received through piped operators. This is also why an empty subscribe call is basically a code smell. Of course, there are exceptions when you cannot avoid using an empty subscribe(), but you should be mindful of it.
