@@ -153,21 +153,7 @@ If you need to set many classes, `[ngClass]="{ ... }"` is the way to go. Example
 <div [ngClass]="{ 'active': isActive, 'main-item': isMainItem, 'accent': isAccent }"></div>
 ```
 
-### Prefix interfaces <a href="#prefix-interfaces" id="prefix-interfaces"></a>
 
-Interfaces should be prefixed with `I`. This might be a polarizing decision, but you should do it because you might have cases where some class implements an interface, and you also have a stub class that implements the same interface.
-
-```
-// bad
-interface UserService { }
-
-// good
-interface IUserService { }
-
-// if we prefix we can do this:
-class UserService implements IUserService { }
-class UserServiceStub implements IUserService { }
-```
 
 ### Prefer interface over type <a href="#prefer-interface-over-type" id="prefer-interface-over-type"></a>
 
