@@ -23,4 +23,3 @@ paste provided URL here, then open it using vs code, go to folder eHarmony\_angu
 1. `cd c:\Users\sarvarkhujam\Documents\GitHub\HarmonySaaSProjects\eHarmony_Angular_MFE`
 2. `npm start`
 
-``

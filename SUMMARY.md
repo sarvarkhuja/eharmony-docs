@@ -29,8 +29,9 @@
 ## Angular best practices
 
 * [Best practices](angular-best-practices/best-practices.md)
-* [Formatting and naming](angular-best-practices/formatting-and-naming.md)
+* [Foundation](angular-best-practices/foundation.md)
 
 ## Typescript best practices&#x20;
 
 * [Best practices](typescript-best-practices/best-practices.md)
+* [Name and Formatting](typescript-best-practices/name-and-formatting.md)
