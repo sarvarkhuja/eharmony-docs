@@ -8,7 +8,7 @@ Always create a new branch from the development, naming convention for the branc
 
 Opening pull request to the development branch
 
-🚨 each commit naming should be `ticketID -- what was done in the commit`
+🚨 each commit naming should be `ticketID - [QA, DEV, PROD] - what was done in the commit`
 
 🚨 before opening pull request, pls lint the application or the library you've worked on using NX
 
