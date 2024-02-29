@@ -557,18 +557,21 @@ Covering all the various operators is out of the scope of this handbook. Please 
 
 ### Don't forget to use Destroy service <a href="#tap-vs-subscribe" id="tap-vs-subscribe"></a>
 
-````
-```typescript
+```
+//Good
     constructor(
         @Self() @Inject(DestroyService) private readonly destroy$: DestroyService,
     ) {}
+    
+//Bad
+    constructor(
+       private destroyer: DestroyService,
+    ) {}
 ```
-````
 
 ### Don't forget to add resolution modifers
 
-````
-```typescript
+```
     constructor(
         @Optional() @Inject(TUI_ELEMENT_REF) el: ElementRef<HTMLElement> | null,
         @Host() @Inject(TUI_IS_IOS) isIos: boolean,
@@ -577,7 +580,6 @@ Covering all the various operators is out of the scope of this handbook. Please 
         @Self() @Inject(DestroyService) destroy$: DestroyService,
     )
 ```
-````
 
 ### tap() vs subscribe() <a href="#tap-vs-subscribe" id="tap-vs-subscribe"></a>
 

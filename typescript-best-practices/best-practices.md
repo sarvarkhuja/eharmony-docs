@@ -4,18 +4,17 @@
 
 
 
-1. [Introduction](https://github.com/labs42io/clean-code-typescript#introduction)
-2. [Variables](https://github.com/labs42io/clean-code-typescript#variables)
-3. [Functions](https://github.com/labs42io/clean-code-typescript#functions)
-4. [Objects and Data Structures](https://github.com/labs42io/clean-code-typescript#objects-and-data-structures)
-5. [Classes](https://github.com/labs42io/clean-code-typescript#classes)
-6. [SOLID](https://github.com/labs42io/clean-code-typescript#solid)
-7. [Testing](https://github.com/labs42io/clean-code-typescript#testing)
-8. [Concurrency](https://github.com/labs42io/clean-code-typescript#concurrency)
-9. [Error Handling](https://github.com/labs42io/clean-code-typescript#error-handling)
-10. [Formatting](https://github.com/labs42io/clean-code-typescript#formatting)
-11. [Comments](https://github.com/labs42io/clean-code-typescript#comments)
-12. [Translations](https://github.com/labs42io/clean-code-typescript#translations)
+1. Introduction
+2. Variables
+3. Functions
+4. Objects and Data Structures
+5. Classes
+6. SOLID
+7. Testing
+8. Concurrency
+9. Error Handling
+10. Formatting
+11. Comments
 
 ### Introduction
 
