@@ -1,4 +1,4 @@
-# Formatting and naming
+# Foundation
 
 ### If you are passing data to a component, use property binding only if necessary <a href="#if-you-are-passing-data-to-a-component-use-property-binding-only-if-necessary" id="if-you-are-passing-data-to-a-component-use-property-binding-only-if-necessary"></a>
 
@@ -83,21 +83,24 @@ In the following example, property binding is unnecessary because we are assigni
 
 When implementing transclusion with manual content selection via the `select` attribute of the `ng-content` element, we recommend using attribute selectors.
 
-The `my-app-wrapper` component template:
+The `app.component.ts` component template:
 
 ```
-<div class="wrapper">
-  <p>Wrapper content:</p>
-  <ng-content select="[some-stuff]"></ng-content>
+<app-child>
+    <div header >This should be rendered in header selection of ng-content</div>
+    <div body >This should be rendered in body selection of ng-content</div>
+</app-child>
+```
+
+child.component.ts
+
+```
+<div class="header-css-class">
+    <ng-content select="[header]"></ng-content>
 </div>
-```
-
-Some other component's template:
-
-```
-<my-app-wrapper>
-  <div class="some-item" some-stuff>Some stuff</div>
-</my-app-wrapper>
+<div class="body-css-class">
+    <ng-content select="[body]"></ng-content>
+</div>
 ```
 
 ### Order/group attributes and bindings <a href="#ordergroup-attributes-and-bindings" id="ordergroup-attributes-and-bindings"></a>
@@ -152,67 +155,6 @@ If you need to set many classes, `[ngClass]="{ ... }"` is the way to go. Example
 ```
 <div [ngClass]="{ 'active': isActive, 'main-item': isMainItem, 'accent': isAccent }"></div>
 ```
-
-
-
-### Prefer interface over type <a href="#prefer-interface-over-type" id="prefer-interface-over-type"></a>
-
-When defining data structures, prefer using interfaces over types. Use types only for those things for which interfaces cannot be used—unions of different types.
-
-```
-// bad
-export type User = {
-  name: string;
-};
-
-// good
-export interface IUser {
-  name: string;
-}
-
-// good
-export type CSSPropertyValue = number | string;
-```
-
-You might be tempted to use a type for a union of models. For example, in some CMS solutions you might have `AdminModel` and `AuthorModel`. The user can log in using either admin or author credentials.
-
-```
-export class AdminModel {
-  public id: string;
-  public permissions: Array<Permission>;
-}
-
-export class AuthorModel {
-  public id: string;
-  public posts: Array<Post>;
-}
-
-export type User = AdminModel | AuthorModel;
-
-// in some component
-@Input() public user: User;
-
-// in template
-User id: {{ user.id }}
-```
-
-This might seem fine at first, but it is actually an anti-pattern. What you should actually do in a case like this is create an abstraction above `AdminModel` and `AuthorModel`:
-
-```
-export abstract class User {
-  public id: string;
-}
-
-export class AdminModel extends User {
-  public permissions: Array<Permission>;
-}
-
-export class AuthorModel extends User {
-  public posts: Array<Post>;
-}
-```
-
-**TL;DR:** Prefer interfaces and abstractions over types. Use types only when you need union types.
 
 ### Ordering the class members (including getters and lifecycle hooks) <a href="#ordering-the-class-members-including-getters-and-lifecycle-hooks" id="ordering-the-class-members-including-getters-and-lifecycle-hooks"></a>
 
@@ -273,30 +215,6 @@ class MyComponent {
         ...
       });
     }
-  }
-}
-```
-
-```
-// good
-@Component(...)
-class MyComponent {
-  @Input() public user: UserModel;
-  public userForm: FormGroup;
-
-  constructor(private fb: FormBuilder) {}
-
-  public ngOnChanges(changes: SimpleChanges) {
-    if (changes.user) {
-      this.createUserForm();
-    }
-  }
-
-  private createUserForm(): void {
-    this.userForm = this.fb.group({
-      name: this.user.name,
-      ...
-    });
   }
 }
 ```
@@ -387,7 +305,7 @@ When learning Angular, you hear a lot about different lifecycle hooks. Even when
 ```
 @Component(...)
 class MyComponent {
-  private foo: string;
+  private foo!: string;
 
   constructor() {
     this.foo = 'bar';
@@ -402,7 +320,7 @@ This works and there is nothing wrong with this, but it can be written shorter l
 ```
 @Component(...)
 class MyComponent {
-  private foo: string = 'bar';
+  private foo = 'bar';
 }
 ```
 
@@ -413,7 +331,7 @@ We did pretty much the same thing, but a bit shorter.
 ```
 @Component(...)
 class MyComponent {
-  private foo: string = 'bar';
+  private foo = 'bar';
 
   constructor() {
     this.foo = 'foo';
@@ -776,7 +694,7 @@ A rule of thumb is to subscribe as little and as late as possible, and do minima
 We will demonstrate this with an example. Imagine you have a stream of data to which you would like to subscribe and transform the data in some way.
 
 ```
-interface IUser {
+interface User {
   id: number;
   user_name: string;
   name: string;
@@ -797,9 +715,9 @@ interface IUser {
 
 ```
 // bad
-const user$: Observable<IUser> = http.get('/account/me');
+const user$: Observable<User> = http.get('/account/me');
 
-user$.subscribe((response: IUser) => {
+user$.subscribe((response: User) => {
   console.log(response.user_name); // TheDude
 });
 ```
@@ -807,7 +725,7 @@ user$.subscribe((response: IUser) => {
 ```
 // good
 const userName$: Observable<string> = http.get('/account/me').pipe(
-  map((response: IUser) => response.user_name)
+  map((response: User) => response.user_name)
 );
 
 userName$.subscribe(console.log); // TheDude
